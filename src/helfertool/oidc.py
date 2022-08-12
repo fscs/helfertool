@@ -39,8 +39,13 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
     def verify_claims(self, claims):
         verified = super(CustomOIDCAuthenticationBackend, self).verify_claims(claims)
 
+<<<<<<< HEAD
         # we require the given_name and family_name
         if "preferred_username" not in claims or "preferred_username" not in claims:
+=======
+        # we require the given_name and family_name, email is already checked by verify_claims
+        if "given_name" not in claims or "family_name" not in claims:
+>>>>>>> 4291a162 (use username field to match users for openid connect login)
             return False
 
         # abort login early when user is not allowed to login -> do not create account in database
@@ -51,6 +56,16 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
             is_active = self._check_claim_for_flag(claims, settings.OIDC_CUSTOM_CLAIM_LOGIN)
 
         return verified and is_active
+
+    # match users based on username field
+    # default is email field, but it is not unique which can result in issues
+    # we set username = email, so finally its the email address, but stored in another field
+    def filter_users_by_claims(self, claims):
+        email = claims.get("email")
+        if not email:
+            return self.UserModel.objects.none()
+
+        return self.UserModel.objects.filter(username__exact=generate_username(email))
 
     # called on first login when no user object exists
     def create_user(self, claims):
@@ -64,6 +79,7 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
         # name
         user.first_name = claims.get("preferred_username")
         user.last_name = claims.get("preferred_username")
+        user.email = claims.get("email")
 
         # check if login should be restricted (if not, login is allowed)
         if settings.OIDC_CUSTOM_CLAIM_LOGIN:
