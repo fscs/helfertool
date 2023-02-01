@@ -189,6 +189,7 @@ class RegisterForm(forms.ModelForm):
         instance = super(RegisterForm, self).save(False)
         #Helper.objects.filter(id = self.id).delete()
         instance.event = self.event
+        instance.id = uuid.uuid4
         if self.id is not None:
             instance.id = self.id
 
