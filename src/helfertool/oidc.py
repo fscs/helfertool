@@ -40,12 +40,17 @@ class CustomOIDCAuthenticationBackend(OIDCAuthenticationBackend):
         verified = super(CustomOIDCAuthenticationBackend, self).verify_claims(claims)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         # we require the given_name and family_name
         if "preferred_username" not in claims or "preferred_username" not in claims:
 =======
         # we require the given_name and family_name, email is already checked by verify_claims
         if "given_name" not in claims or "family_name" not in claims:
 >>>>>>> 4291a162 (use username field to match users for openid connect login)
+=======
+        # we require the given_name and family_name
+        if "preferred_username" not in claims or "preferred_username" not in claims:
+>>>>>>> caa09972 (using prefered username instead of given and family name)
             return False
 
         # abort login early when user is not allowed to login -> do not create account in database
