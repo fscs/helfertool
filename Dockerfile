@@ -6,7 +6,7 @@ ENV LANG=C.UTF-8
 ENV DJANGO_SETTINGS_MODULE="helfertool.settings_container"
 ENV HELFERTOOL_CONFIG_FILE="/config/helfertool.yaml"
 
-RUN apt-get install -y \
+RUN apt update && apt upgrade && apt-get install -y \
         supervisor pkg-config nginx rsyslog pwgen curl \
         python3 python3-pip python3-dev uwsgi uwsgi-plugin-python3  python3-venv \
         build-essential libldap2-dev libsasl2-dev libmariadb-dev libmagic1 \
