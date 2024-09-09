@@ -1,4 +1,4 @@
-FROM debian:bullseye-20231218
+FROM debian:bookworm
 
 ARG CONTAINER_VERSION="unknown"
 
