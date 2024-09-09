@@ -6,9 +6,9 @@ ENV LANG=C.UTF-8
 ENV DJANGO_SETTINGS_MODULE="helfertool.settings_container"
 ENV HELFERTOOL_CONFIG_FILE="/config/helfertool.yaml"
 
-RUN apt-get install --no-install-recommends -y \
+RUN apt-get install -y \
         supervisor pkg-config nginx rsyslog pwgen curl \
-        python3 python3-pip python3-dev uwsgi uwsgi-plugin-python3  python3.11-venv \
+        python3 python3-pip python3-dev uwsgi uwsgi-plugin-python3  python3-venv \
         build-essential libldap2-dev libsasl2-dev libmariadb-dev libmagic1 \
         texlive-latex-extra texlive-plain-generic texlive-fonts-recommended texlive-lang-german && \
     apt-get clean && \
