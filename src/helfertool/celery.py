@@ -13,6 +13,7 @@ from celery.signals import task_failure
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "helfertool.settings")
 
 # init celery
+print(__file__)
 app = Celery("helfertool")
 app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()

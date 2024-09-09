@@ -14,7 +14,7 @@ from pathlib import Path
 
 from .utils import dict_get, build_path, get_version, pg_trgm_installed
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(os.getcwd()).resolve();
 
 # import configuration file
 config_file = os.environ.get("HELFERTOOL_CONFIG_FILE", BASE_DIR / "helfertool.yaml")
