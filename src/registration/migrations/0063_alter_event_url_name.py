@@ -6,7 +6,7 @@ import registration.models.event
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("registration", "0062_auto_20220709_1931"),
+        ("registration", "0063_helper_user_id")
     ]
 
     operations = [

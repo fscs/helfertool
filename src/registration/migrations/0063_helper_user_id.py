@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registration', '0063_alter_event_url_name')
+        ('registration', '0062_auto_20220709_1931')
     ]
 
     operations = [
