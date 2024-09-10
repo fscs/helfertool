@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registration', '0063_helper_user_id'),
+        ('registration', '0063_alter_event_url_name')
     ]
 
     operations = [
